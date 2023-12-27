@@ -17,7 +17,7 @@ const Footer = () => {
             const gotData = await getUserDataF();
             setUserName(gotData.name);
           };
-          if(path != '/signin' && path != '/signin' && path != '/resetpassword'){
+          if(path !== '/signin' && path !== '/signin' && path !== '/resetpassword'){
 
               userInfo();
           }
