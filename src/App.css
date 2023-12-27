@@ -1,0 +1,715 @@
+.hhome {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+#noteicon {
+  height: 15%;
+  width: 15%;
+}
+
+i {
+  cursor: pointer;
+}
+
+#hlogin {
+  text-align: center;
+  font-size: 4rem;
+}
+
+.custom-nav {
+  background-color: aqua;
+  border: 1px solid rgb(165, 165, 245);
+  justify-content: left;
+  font-family: 'Yeon Sung';
+  height: 11vh;
+  width: 98.7vw;
+  padding: .3rem;
+}
+
+.custom-nav ul {
+  display: flex;
+}
+
+#logo {
+  display: flex;
+  color: black;
+  align-items: center;
+  font-size: 3vw;
+}
+
+#logo a {
+  text-decoration: none;
+  color: black;
+}
+
+div #logo img {
+  height: 6vh;
+  width: 3vw;
+}
+
+.custom-nav li {
+  list-style: none;
+  text-align: center;
+  color: rgb(7, 7, 7);
+  text-decoration: none;
+  margin: .8rem;
+  font-size: 1.5vw;
+}
+
+.paths {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.8rem;
+}
+
+.paths a {
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  color: white;
+  /* background-image: radial-gradient(circle at center, rgb(1, 1, 97), rgb(12, 0, 52),rgb(0, 0, 0)); */
+  background: linear-gradient(to bottom, black, rgb(6, 0, 48), black);
+
+  position: relative;
+}
+
+.noteCard {
+  background: url('../public/lightPurple.gif') no-repeat center/cover;
+  /* background-color: black; */
+  color: white;
+  border-color: aqua;
+}
+
+.noteCard:hover {
+  border-color: yellow;
+  box-shadow: 0px 0px 1.5rem rgb(255, 102, 0);
+}
+.searchedNoteCard{
+  border-color: rgb(0, 255, 55);
+  box-shadow: 0px 0px 2rem rgb(0, 122, 37);
+}
+
+
+
+.noteTitle {
+  color: rgb(5, 220, 244);
+}
+
+.noteDescription {
+  color: rgb(255, 255, 211);
+}
+
+.noteTag {
+  color: rgb(51, 255, 0);
+  font-style: italic;
+}
+
+.fabIcons {
+  color: #ffffff !important;
+}
+
+.mainHead11 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #FF4500;
+  font-size: 300%;
+  text-shadow: 3px 6px 2px #4f0000;
+}
+
+.mainHead12 {
+  font-family: serif;
+  color: #00FF00;
+  font-size: 300%;
+  text-shadow: 2px 4px 2px #004c1b;
+}
+
+.mainHead2 {
+  font-size: 1.3rem;
+  font-family: cursive;
+  color: #FFD700;
+}
+
+
+
+.modal-content {
+  background-color: rgba(2, 2, 128, 0.5) !important;
+  color: white !important;
+}
+
+#etitle,
+#edescription,
+#etag {
+  color: white;
+  background-color: #000000;
+}
+
+.eLabel {
+  font-size: 130%;
+  color: yellow;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  /* text-align: center; */
+}
+
+.editControl::placeholder {
+  color: rgb(205, 205, 205);
+}
+
+
+.btn-close {
+  background-color: red;
+}
+
+.loginh21 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #FF4500;
+  text-shadow: 2px 2px 2px #a35a02;
+}
+
+.loginh22 {
+  font-family: serif;
+  color: #00FF00;
+  text-shadow: 2px 2px 2px #027402;
+}
+
+.tagField,
+.actualtagField,
+.loginField {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.tagField:focus,
+.actualtagField:focus,
+.loginField:focus {
+  border: 1px solid cyan;
+  box-shadow: 0px 0px 20px rgb(0, 85, 255);
+  background-color: black;
+  color: white;
+}
+
+.tagField::placeholder,
+.actualtagField::placeholder,
+.loginField::placeholder {
+  color: rgb(10, 75, 240);
+}
+
+.loginField {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.loginField:focus {
+  border: 2px solid rgb(255, 247, 0);
+  box-shadow: 0px 0px 20px rgb(255, 166, 0);
+  background-color: black;
+  color: white;
+}
+
+.loginField::placeholder {
+  color: rgb(10, 75, 240);
+}
+
+
+.readMoreButton {
+  /* border: 2px solid rgb(255, 0, 174); */
+  /* border-radius: 20px;
+  background-color: black; */
+  color: rgb(7, 46, 240);
+  font-size: small;
+  /* padding: 3%; */
+  cursor: pointer;
+}
+
+.addNoteButton {
+  background-color: #000000;
+  color: #fff;
+  border: 2px solid rgb(64, 0, 255);
+  padding: 0.5rem 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 4px rgb(11, 144, 232);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.addNoteButton:hover {
+  box-shadow: 0 2px 4px rgb(11, 144, 232);
+  animation: button-border 1s infinite alternate;
+  background-color: #000000;
+  border: 2px solid rgb(64, 0, 255);
+  color: yellow;
+}
+
+
+@keyframes button-border {
+  0% {
+    box-shadow: 0 2px 0.5rem rgba(35, 8, 243, 0.3);
+  }
+
+  100% {
+    box-shadow: 0 2px 1.5rem rgb(255, 142, 4);
+  }
+}
+
+.addNoteButton:disabled {
+  background-color: #000000;
+  color: #686565;
+  border: 2px solid rgb(64, 0, 255);
+  padding: 0.5rem 0.5rem;
+  border-radius: 1.5rem;
+  animation: none;
+  /* box-shadow: 0 2px 4px rgb(11, 144, 232); */
+}
+
+.text-muted {
+  color: rgb(101, 101, 101) !important;
+}
+
+.sudoNavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 0.8rem;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.5rem;
+  background-color: #000000;
+  border-radius: 0.5rem;
+  width: 25%;
+  height: 7vh;
+  border: 1px solid white;
+
+}
+
+.searchBar:focus-within {
+  border: 2px solid rgb(255, 136, 0);
+}
+
+.searchInput {
+  width: 70%;
+  border: none;
+  outline: none;
+  padding: 0.2rem;
+  background-color: #000000;
+  color: white;
+}
+
+.searchButton {
+  background-color: #2200b8;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 0.5rem;
+  height: 16%;
+  width: 32%;
+
+}
+
+/* for gradient border with radius */
+.sudoNavbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  padding: 0.1%;
+  background: linear-gradient(45deg, red, rgb(255, 109, 240), blue);
+  z-index: -1;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.footerLine {
+  background: linear-gradient(to bottom, rgb(10, 1, 91), rgb(0, 0, 0));
+}
+
+
+/* G is for green success, E is for Error, topBadge is alertComp */
+.topBadgeG {
+  border: 1px solid cyan;
+  background-color: rgba(2, 0, 37, 0.89);
+  color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topBadgeG strong {
+  color: #00FF00;
+  font-size: 1rem;
+}
+
+.topBadgeE {
+  border: 1px solid rgb(255, 0, 0);
+  background-color: rgba(14, 0, 0, 0.89);
+  color: rgb(255, 79, 79);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noteDate {
+  font-size: 0.7em;
+  color: orange;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+}
+
+.userName {
+  font-size: 2vw;
+  background: linear-gradient(to right, rgb(7, 7, 15), rgb(0, 58, 79), rgb(0, 4, 45));
+  border-radius: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+#userName {
+  color: rgb(255, 103, 9);
+  text-decoration: double;
+  font-weight: bold;
+  text-shadow: 2px 2px 1px #4d0300;
+}
+
+.countdownText {
+  font-size: 1.2vw;
+}
+
+.countdownText span {
+  color: #00FF00;
+}
+
+.deleteIconSvg {
+  filter: invert(100%);
+  height: 11.5%;
+  width: 6.5%;
+  margin-left: 5%;
+}
+
+.deleteIconSvg:hover {
+  cursor: pointer;
+  /* change color */
+  filter: brightness(0) saturate(100%) invert(17%) sepia(95%) saturate(7487%) hue-rotate(350deg) brightness(95%) contrast(99%);
+  fill: red;
+  height: 12%;
+  width: 7%;
+}
+
+.deleteIconMessage {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: rgb(242, 15, 53);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: cursive;
+
+}
+
+.editIconSvg {
+  filter: invert(100%);
+  height: 12.5%;
+  width: 7.5%;
+}
+
+.editIconSvg:hover {
+  cursor: pointer;
+  /* change color */
+  filter: brightness(0) saturate(100%) invert(17%) sepia(95%) saturate(7487%) hue-rotate(120deg) brightness(95%) contrast(99%);
+  height: 12.5%;
+  width: 7.5%;
+}
+
+.editIconMessage {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: rgb(9, 248, 53);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+.confirmBox {
+  background-color: rgb(48, 0, 0);
+  border: 1px solid red;
+  color: white;
+  font-size: 1rem;
+  padding: 5%;
+  height: 25vh;
+  width: 40vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  animation: button-border 1s infinite alternate;
+
+}
+.buttonGroup {
+  display: inline-block;
+  margin-top: 1rem;
+}
+.buttonGroup button {
+  margin: 0.5rem;
+  width: 7vw;
+  /* height: 2rem;  */
+  border-radius: 10px;
+}
+.buttonGroup #yesButton:hover {
+  background-color: #002e00;
+  border: 2px solid green;
+}
+.buttonGroup #noButton:hover {
+  background-color: #2e0f00;
+  border: 2px solid rgb(128, 0, 2);
+}
+
+.resetPassContainer{
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.resetOTPBox{
+  margin-top: 3%;
+  border: 1.5px solid white;
+  padding: 6%;
+  width: 54%;
+  height: 58%;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.resetPasswordmis{
+  color: red !important;
+}
+
+.emptySearchResult,.emptyNotes{
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+}
+
+.githubIcon,.linkedinIcon,.facebookIcon{
+  height: 20px;
+  width: 20px;
+  filter: invert(100%);
+  margin-left: 40%;
+}
+.githubIcon:hover,.linkedinIcon:hover,.facebookIcon:hover{
+  cursor: pointer;
+}
+.iconsBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/*                                                Responsive CSS */
+@media only screen and (min-width: 1024px) {
+  .noteExpanded:hover::after {
+    content: "Press Esc to Close";
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(15, 231, 242);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .confirmBox {
+    width: 42vw;
+  }
+}
+
+@media only screen and (max-width:1200px) {
+  .sudoNavbar::before {
+    padding: 0.18%;
+  }
+}
+
+@media only screen and (min-width:760px) and (max-width:1015px) {
+  .confirmBox {
+    width: 52vw;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .mainHead11 {
+    font-size: 300%;
+  }
+
+  .mainHead12 {
+    font-size: 300%;
+  }
+
+  .mainHead2 {
+    font-size: 0.9rem;
+  }
+
+
+  .searchBar {
+    width: 35%;
+  }
+
+  .sudoNavbar::before {
+    padding: 0.2%;
+  }
+
+  .confirmBox {
+    height: 19vh;
+    width: 68vw;
+  }
+
+  .confirmBox button {
+    width: 10vw;
+  }
+
+
+}
+
+@media only screen and (max-height:768px) {
+  .searchBar {
+    height: 8.5vh;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .sudoNavbar::before {
+    padding: 0.3%;
+  }
+
+  .confirmBox {
+    padding: 3%;
+    font-size: 0.7rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .mainHead11 {
+    font-size: 300%;
+  }
+
+  .mainHead12 {
+    font-size: 300%;
+  }
+
+  .mainHead2 {
+    font-size: 0.75rem;
+  }
+
+
+  .addNoteButton {
+    font-size: 10px;
+    padding: 0.2rem 0.2rem;
+  }
+
+  .searchBar {
+    width: 45%;
+    height: 7vh;
+  }
+
+  .sudoNavbar::before {
+    padding: 0.4%;
+  }
+
+  .topBadgeE,
+  .topBadgeG,
+  .topBadgeE strong,
+  .topBadgeG strong {
+    font-size: 8px;
+  }
+
+  /* .confirmMessage {
+    word-wrap: break-word;
+    width: 45vw;
+  }
+.confirmBox{
+  width: ;
+} */
+
+}
+@media only screen and (max-width:360px){
+  .confirmBox{
+    width: 73vw;
+  }
+  .confirmMessage{
+    width: 60vw;
+    font-size: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 285px) {
+  .mainHead11 {
+    font-size: 100%;
+  }
+
+  .mainHead12 {
+    font-size: 100%;
+  }
+
+  .mainHead2 {
+    font-size: 0.5rem;
+  }
+
+
+  .sudoNavbar::before {
+    padding: 0.6%;
+  }
+
+  .topBadgeE,
+  .topBadgeG,
+  .topBadgeE strong,
+  .topBadgeG strong {
+    font-size: 6px;
+  }
+}
+
+.loginScreen{
+  min-height: 100vh;
+}
+.signupScreen{
+  min-height: 100vh;
+  text-align: center;
+}
