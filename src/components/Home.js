@@ -14,11 +14,7 @@ const Home = (props) => {
   }, []);
   return (
     <div style={{paddingBottom:'4rem'}}>
-      <div>
-        <h2 className='hhome'>
-          <span className='mainHead11'>My</span><span className='mainHead12'>Notes</span><span className='mainHead2'> - Your Notebook on the Cloud</span>  
-        </h2>
-      </div>
+
       <div className='homecont'>
       <Notes showAlert={showAlert}/>
       </div>

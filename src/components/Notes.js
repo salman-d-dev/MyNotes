@@ -8,11 +8,17 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import ConfirmComp from "./ConfirmComp";
 
-
 const Notes = (props) => {
   const NavigateTo = useNavigate();
   const NoteContext = useContext(noteContext);
-  const { notes, fetchAllNotes, editNote, deleteNote } = NoteContext;
+  const {
+    notes,
+    fetchAllNotes,
+    editNote,
+    deleteNote,
+    searchTriggered,
+    filteredNotes,
+  } = NoteContext;
 
 
   useEffect(() => {
@@ -134,52 +140,6 @@ useEffect(
   }
 ,[showConfirmDel,selectedNoteforDeletion,deleteNote]);
 
-//for search func:
-const [searchedNotes,setSearchedNotes] = useState([]);
-const [searchKeyword,setSearchKeyword] = useState('');
-const [searchOptionTriggered, setSearchOptionTriggered] = useState(false)
-
-
-  
-  const handleSearchFieldDataChange = (e)=>{
-    setSearchKeyword(e.target.value)
-    setSearchOptionTriggered(e.target.value.length > 0);
-    
-    // Filter the notes based on search keywords
-    const filteredNotes = notes.filter(
-      (note) =>
-      note.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-      note.description.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-      note.tag.some((tag) =>
-      tag.toLowerCase().includes(searchKeyword.toLowerCase())
-      )
-      );
-      setSearchedNotes(filteredNotes);
-  }
-
-  useEffect(() => {
-    // Filter the notes based on search keywords
-    const filteredNotes = notes.filter((note) => {
-      const trimmedKeyword = searchKeyword.trim().toLowerCase();
-      const titleMatch = note.title.toLowerCase().includes(trimmedKeyword);
-      const descriptionMatch = note.description.toLowerCase().includes(trimmedKeyword);
-      const tagMatch = note.tag.toLowerCase().includes(trimmedKeyword);
-      const dateMatch = note.date.toLowerCase().includes(trimmedKeyword);
-    
-      return titleMatch || descriptionMatch || tagMatch || dateMatch;
-    });
-  
-    setSearchedNotes(filteredNotes);
-  }, [searchKeyword, notes]);
-
-//   In the given code, there are two instances where the notes are filtered based on search keywords. The first instance is inside the handleSearchFieldDataChange function, which is triggered on the onChange event of the search input field. The second instance is inside the useEffect hook at the bottom of the code.
-
-// The reason for having two separate filtering implementations is to handle different scenarios efficiently:
-
-// handleSearchFieldDataChange: This function is responsible for filtering the notes as the user types in the search input field. It is triggered on every change in the input value and updates the searchedNotes state immediately, providing real-time search results to the user. This approach ensures a responsive and interactive search experience.
-
-// useEffect hook at the bottom: This hook is responsible for filtering the notes whenever the searchKeyword or notes state changes. It provides a fallback mechanism to update the searchedNotes state if there are any changes to the searchKeyword or notes array outside of the search input field. This ensures that the search results remain up to date even if the user navigates away from the search input field or performs other actions that may affect the notes.
-
   return (
     <>
 
@@ -196,10 +156,6 @@ const [searchOptionTriggered, setSearchOptionTriggered] = useState(false)
         </div>
 
 
-        <div className="searchBar">
-          <input type="text" className="searchInput" placeholder="Search..." onChange={handleSearchFieldDataChange}/>
-          <button className="addNoteButton">Search</button>
-        </div>
       </div>
 
       {showAddNote ? <AddNotesForm showAlert={props.showAlert} /> : ""}
@@ -296,46 +252,40 @@ const [searchOptionTriggered, setSearchOptionTriggered] = useState(false)
       <div className="row my-5 mx-1">
         <h1 className="text-center">Your Notes</h1>
 
-        {searchedNotes.length ===0 && notes.length!==0 && (<div className="emptySearchResult">
-          <h3>(No search results..)</h3>
-        </div>)}
-
         { notes.length === 0 && (<div className="emptyNotes">
           <h3>(No notes to display)</h3>
         </div>)}
 
-        {searchOptionTriggered && searchedNotes.length>0? (<div>
-          <h3 className="text-center">({searchedNotes.length} {searchedNotes.length === 1? "result": "results"} found)</h3>
-        </div>) : (null)}
       </div>
       <div className="row">
-        {/* if filtered notes is not empty */}
-        { (searchOptionTriggered && searchKeyword.length>0)? searchedNotes.map((note) => {
-          return (
+        {/* Display filtered notes if search is triggered, otherwise display all notes */}
+        {searchTriggered ? (
+          filteredNotes.map((note) => (
             <NoteItem
               key={note._id}
               note={note}
               updateNote={updateNote}
-              showAlert={props.showAlert} onClickDelete={()=>{
+              showAlert={props.showAlert}
+              onClickDelete={() => {
                 setShowConfirmDel(true);
                 setSelectedNoteForDeletion(note._id);
               }}
-              searched={true}
             />
-          );
-        }) : notes.map((note) => {
-          return (
+          ))
+        ) : (
+          notes.map((note) => (
             <NoteItem
               key={note._id}
               note={note}
               updateNote={updateNote}
-              showAlert={props.showAlert} onClickDelete={()=>{
+              showAlert={props.showAlert}
+              onClickDelete={() => {
                 setShowConfirmDel(true);
                 setSelectedNoteForDeletion(note._id);
               }}
             />
-          );
-        }) }
+          ))
+        )}
       </div>
       <button className="btn btn-primary d-none" ref={refClose}>
         Save
@@ -345,3 +295,12 @@ const [searchOptionTriggered, setSearchOptionTriggered] = useState(false)
 };
 
 export default Notes;
+
+
+//   In the given code, there are two instances where the notes are filtered based on search keywords. The first instance is inside the handleSearchFieldDataChange function, which is triggered on the onChange event of the search input field. The second instance is inside the useEffect hook at the bottom of the code.
+
+// The reason for having two separate filtering implementations is to handle different scenarios efficiently:
+
+// handleSearchFieldDataChange: This function is responsible for filtering the notes as the user types in the search input field. It is triggered on every change in the input value and updates the searchedNotes state immediately, providing real-time search results to the user. This approach ensures a responsive and interactive search experience.
+
+// useEffect hook at the bottom: This hook is responsible for filtering the notes whenever the searchKeyword or notes state changes. It provides a fallback mechanism to update the searchedNotes state if there are any changes to the searchKeyword or notes array outside of the search input field. This ensures that the search results remain up to date even if the user navigates away from the search input field or performs other actions that may affect the notes.

@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import NoteState from './context/notes/noteState';
 import AuthState from './context/notes/authState';
 import ResetPassword from './components/ResetPassword';
+import Navbar from './components/navbar/Navbar';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <AuthState>
       <Router>
         <Alertcomp alert={alert} />
+          <Navbar/>
         <div className='container'>
           <Routes>
             <Route exact path='/' element={<Home showAlert={showAlert} />}>

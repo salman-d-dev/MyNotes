@@ -1,6 +1,6 @@
 // THIS IS WHAT CONNECTS THE BACKENED API TO FRONT END, WE USE 'fetch api'
 import noteContext from "./noteContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NoteState = (props) => {
 const host = process.env.REACT_APP_BACKEND_HOST;
@@ -8,6 +8,9 @@ const host = process.env.REACT_APP_BACKEND_HOST;
 
 
   const [notes, setNotes] = useState([]);
+  const [searchKeyword, setSearchKeyword]= useState("")
+  const [searchTriggered, setSearchTriggered] = useState(false);
+  const [filteredNotes, setFilteredNotes] = useState([]);
 
   //FUNC TO FETCH ALL NOTES
 
@@ -22,6 +25,34 @@ const host = process.env.REACT_APP_BACKEND_HOST;
     const jsonNotes = await response.json();
     setNotes(jsonNotes);
   };
+
+  const filterNotes = (searchKeyword) => {
+    if (searchKeyword.trim() === "") {
+      setFilteredNotes([]);
+    } else {
+      // Filter the notes based on search keywords
+      const filtered = notes.filter(
+        (note) =>
+          note.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+          note.description.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+          (Array.isArray(note.tag) &&
+            note.tag.some((tag) =>
+              tag.toLowerCase().includes(searchKeyword.toLowerCase())
+            ))
+      );
+      setFilteredNotes(filtered);
+    }
+  };
+
+  useEffect(()=>{
+    if(searchKeyword?.length>0){
+      setSearchTriggered(true)
+      filterNotes(searchKeyword)
+    }
+    else{
+      setSearchTriggered(false)
+    }
+  },[searchKeyword])
 
   //FUNC TO ADD A NOTE
   //Add func from addnotesform into here and use it there
@@ -88,9 +119,24 @@ const host = process.env.REACT_APP_BACKEND_HOST;
   };
   
   return (
-    <noteContext.Provider value={{ notes, addNote, editNote, deleteNote, fetchAllNotes }}>
-      {props.children}
-    </noteContext.Provider>
+    <noteContext.Provider
+    value={{
+      notes,
+      setNotes,
+      addNote,
+      editNote,
+      deleteNote,
+      fetchAllNotes,
+      searchKeyword, setSearchKeyword,
+      searchTriggered,
+      setSearchTriggered,
+      filteredNotes,
+      setFilteredNotes,
+      filterNotes,
+    }}
+  >
+    {props.children}
+  </noteContext.Provider>
   );
 };
 

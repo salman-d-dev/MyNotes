@@ -1,6 +1,17 @@
-.hhome {
-  margin-bottom: 3rem;
-  text-align: center;
+@font-face {
+  font-family: 'Aldrich';
+  src: url('./components/static/fonts/Aldrich/Aldrich-Regular.ttf') format('truetype'); /* TTF format */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  color: white;
+  font-family: 'Aldrich', sans-serif;
+
+  /* background-image: radial-gradient(circle at center, rgb(1, 1, 97), rgb(12, 0, 52),rgb(0, 0, 0)); */
+  background: linear-gradient(to bottom, black, rgb(6, 0, 48), black);
+  position: relative;
 }
 
 #noteicon {
@@ -69,13 +80,7 @@ div #logo img {
   color: black;
 }
 
-body {
-  color: white;
-  /* background-image: radial-gradient(circle at center, rgb(1, 1, 97), rgb(12, 0, 52),rgb(0, 0, 0)); */
-  background: linear-gradient(to bottom, black, rgb(6, 0, 48), black);
 
-  position: relative;
-}
 
 .noteCard {
   background: url('../public/lightPurple.gif') no-repeat center/cover;
@@ -110,26 +115,6 @@ body {
 
 .fabIcons {
   color: #ffffff !important;
-}
-
-.mainHead11 {
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  color: #FF4500;
-  font-size: 300%;
-  text-shadow: 3px 6px 2px #4f0000;
-}
-
-.mainHead12 {
-  font-family: serif;
-  color: #00FF00;
-  font-size: 300%;
-  text-shadow: 2px 4px 2px #004c1b;
-}
-
-.mainHead2 {
-  font-size: 1.3rem;
-  font-family: cursive;
-  color: #FFD700;
 }
 
 
@@ -269,67 +254,7 @@ body {
   color: rgb(101, 101, 101) !important;
 }
 
-.sudoNavbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  padding: 0.8rem;
-}
 
-.searchBar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0.5rem;
-  background-color: #000000;
-  border-radius: 0.5rem;
-  width: 25%;
-  height: 7vh;
-  border: 1px solid white;
-
-}
-
-.searchBar:focus-within {
-  border: 2px solid rgb(255, 136, 0);
-}
-
-.searchInput {
-  width: 70%;
-  border: none;
-  outline: none;
-  padding: 0.2rem;
-  background-color: #000000;
-  color: white;
-}
-
-.searchButton {
-  background-color: #2200b8;
-  color: #fff;
-  border: none;
-  padding: 0.5rem;
-  margin-left: 0.5rem;
-  border-radius: 0.5rem;
-  height: 16%;
-  width: 32%;
-
-}
-
-/* for gradient border with radius */
-.sudoNavbar::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50px;
-  padding: 0.1%;
-  background: linear-gradient(45deg, red, rgb(255, 109, 240), blue);
-  z-index: -1;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
 
 .footerLine {
   background: linear-gradient(to bottom, rgb(10, 1, 91), rgb(0, 0, 0));
@@ -472,7 +397,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: 999;
   animation: button-border 1s infinite alternate;
 
 }
@@ -576,17 +501,6 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
-  .mainHead11 {
-    font-size: 300%;
-  }
-
-  .mainHead12 {
-    font-size: 300%;
-  }
-
-  .mainHead2 {
-    font-size: 0.9rem;
-  }
 
 
   .searchBar {
@@ -627,17 +541,6 @@ body {
 }
 
 @media only screen and (max-width: 480px) {
-  .mainHead11 {
-    font-size: 300%;
-  }
-
-  .mainHead12 {
-    font-size: 300%;
-  }
-
-  .mainHead2 {
-    font-size: 0.75rem;
-  }
 
 
   .addNoteButton {
@@ -681,18 +584,6 @@ body {
 }
 
 @media only screen and (max-width: 285px) {
-  .mainHead11 {
-    font-size: 100%;
-  }
-
-  .mainHead12 {
-    font-size: 100%;
-  }
-
-  .mainHead2 {
-    font-size: 0.5rem;
-  }
-
 
   .sudoNavbar::before {
     padding: 0.6%;

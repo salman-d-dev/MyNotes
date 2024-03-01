@@ -9,7 +9,7 @@ function Alert(props) {
         return lower.charAt(0).toUpperCase() + lower.slice(1);
     }
     return (
-        <div style={{height: '50px'}} className='fixed-top'>
+        <div style={{height: '50px', pointerEvents:'none'}} className='fixed-top'>
         {props.alert && <div className={`alert alert-${props.alert.type} alert-dismissible fade show topBadge${props.alert.type==="success"?"G":"E"}`} role="alert">
            <strong>{capitalize(props.alert.type)}</strong>: {props.alert.msg} 
         </div>}
