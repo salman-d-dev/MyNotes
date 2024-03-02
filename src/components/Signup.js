@@ -104,7 +104,7 @@ const Signup = (props) => {
   return (
     <div className="signupScreen">
       <div className="my-5 mx-auto text-center">
-        <h2>Create a free <span className='loginh21'>My</span><span className='loginh22'>Notes</span> account</h2>
+        <h2 className='hlogin'>Create a free <span className='loginh21'>My</span><span className='loginh22'>Notes</span> account</h2>
       </div>
       <div className="mx-auto text-center">
         <Form onSubmit={handleSignUp}>
@@ -173,10 +173,9 @@ const Signup = (props) => {
           </Form.Group>
           {/* conditional overlay */}
           {passwordsMatch ? (
-            <span className="d-inline-block">
+            <>
               {signUpClicked ? null : (
                 <Button
-                  variant="primary"
                   type="submit"
                   disabled={credentials.password !== credentials.cpassword}
                   className="addNoteButton"
@@ -184,7 +183,7 @@ const Signup = (props) => {
                   Sign Up
                 </Button>
               )}
-            </span>
+            </>
           ) : (
             <OverlayTrigger
               overlay={

@@ -5,7 +5,7 @@ import Alertcomp from './components/Alert';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { useState } from 'react';
-import Footer from './components/Footer';
+import Footer from './components/footer/Footer';
 import NoteState from './context/notes/noteState';
 import AuthState from './context/notes/authState';
 import ResetPassword from './components/ResetPassword';
@@ -28,9 +28,9 @@ function App() {
     <NoteState>
         <AuthState>
       <Router>
-        <Alertcomp alert={alert} />
           <Navbar/>
         <div className='container'>
+        <Alertcomp alert={alert} />
           <Routes>
             <Route exact path='/' element={<Home showAlert={showAlert} />}>
             </Route>

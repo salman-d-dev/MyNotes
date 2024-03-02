@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import noteContext from '../context/notes/noteContext';
+import { AiOutlineCloseSquare } from "react-icons/ai";
+
 
 const AddNotesForm = (props) => {
   const context = useContext(noteContext);
@@ -20,17 +22,17 @@ const AddNotesForm = (props) => {
   };
 
   return (
-    <div className="container my-5 ">
+    <div className="my-5 addNotesForm">
+        <AiOutlineCloseSquare className="closeButton" onClick={()=>{props.setShowAddNote(false)}} />
       <h3 className="text-center mb-4">Add a Note</h3>
       <Form>
-        <Form.Group controlId="formTitle" className="text-center w-50 mx-auto">
+        <Form.Group controlId="formTitle" className="text-center mx-auto">
           <Form.Label>Title</Form.Label>
           <Form.Control 
           className='tagField'
             type="text"
             placeholder="Enter title"
             onChange={changeNote}
-            id="title"
             name="title"
             minLength={2}
             value={note.title}
@@ -38,7 +40,7 @@ const AddNotesForm = (props) => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formDescription" className="text-center w-50 mx-auto my-3">
+        <Form.Group controlId="formDescription" className="text-center mx-auto my-3">
           <Form.Label>Description</Form.Label>
           <Form.Control
           className='tagField'
@@ -46,7 +48,6 @@ const AddNotesForm = (props) => {
             rows={3}
             placeholder="Enter description"
             onChange={changeNote}
-            id="description"
             name="description"
             minLength={5}
             value={note.description}
@@ -55,7 +56,7 @@ const AddNotesForm = (props) => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formTag" className="text-center w-50 mx-auto">
+        <Form.Group controlId="formTag" className="text-center mx-auto">
           <Form.Label>Tag</Form.Label>
           <Form.Control
             className='actualtagField'

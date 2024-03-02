@@ -36,8 +36,7 @@
   
   .menu-icon {
     pointer-events: all;
-    font-size: 3rem;
-    display: block;
+    font-size: 2.5rem;
   }
   
   .menu-icon:hover, #closeButton:hover, .social svg:hover, .dropdown span:hover {
@@ -75,19 +74,19 @@
 #noshow{
   transform: translateX(120%)  scale(10%);
   box-shadow: none;
-  
 }
+
 #show{
   transform: translateX(0) scale(100%);
 }
-  #closeButton{
+#closeButton{
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 2.5rem;
-  }
+}
 
-  #searchBar{
+#searchBar{
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -98,8 +97,6 @@
     margin-bottom: 1.5rem;
   
   }
-
-  
 .searchInput {
   width: 70%;
   border: none;
@@ -121,27 +118,38 @@
 
 }
 
-  .followMe{
+.followMe{
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
   }
-  .followMe span{
+.followMe span{
     margin-bottom: 1.5rem;
   }
-  .social{
+.social{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
-  .social svg{
+.social svg{
     font-size: 2rem;
   }
-  .social a {
+.social a {
     text-decoration: none; /* Remove underline */
     color: inherit; /* Use the inherited color (or specify your own color) */
     cursor: pointer; /* Set cursor to pointer on hover */
   }
   
+@media only screen and (max-width:768px){
+  .dropdown{
+    width: 200px;
+    height: 300px;
+  }
+  #closeButton{
+    font-size: 1rem;
+    top: 5px;
+    right: 5px;
+  }
+}

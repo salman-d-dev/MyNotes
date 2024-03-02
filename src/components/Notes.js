@@ -149,7 +149,7 @@ useEffect(
             onClick={() => {
               setShowAddNote(!showAddNote);
             }}
-            className="addNoteButton"
+            className="addNoteButton" id="add"
           >
             {showAddNote ? "Close Form" : "Add Note"}
           </button>
@@ -158,7 +158,7 @@ useEffect(
 
       </div>
 
-      {showAddNote ? <AddNotesForm showAlert={props.showAlert} /> : ""}
+      {showAddNote ? <AddNotesForm setShowAddNote={setShowAddNote} showAlert={props.showAlert} /> : ""}
 
       {/* For confirm Comp */}
       {showConfirmDel && <ConfirmComp onYesClick={handleYesDeleteReq} onNoClick={()=>{
@@ -257,7 +257,7 @@ useEffect(
         </div>)}
 
       </div>
-      <div className="row">
+      <div className="row notesBox">
         {/* Display filtered notes if search is triggered, otherwise display all notes */}
         {searchTriggered ? (
           filteredNotes.map((note) => (

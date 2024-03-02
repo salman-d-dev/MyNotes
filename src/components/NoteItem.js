@@ -46,8 +46,7 @@ const NoteItem = (props) => {
   }, []);
 
   return (
-    <>
-      <div className='col-md-3'>
+      //<div className='col-md-3'>
         <Card className={searched? "my-3 noteCard searchedNoteCard":"my-3 noteCard"} >
           <Card.Img variant='top' src={noteicon} id='noteicon' />
           <Card.Body className='pb-2'>
@@ -99,8 +98,7 @@ const NoteItem = (props) => {
 
           </Card.Body>
         </Card>
-      </div>
-    </>
+      //</div>
   );
 };
 

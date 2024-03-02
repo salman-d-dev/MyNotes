@@ -36,11 +36,11 @@ const Login = (props) => {
   return (
     <div className='loginScreen'>
       <div className='my-3 text-center'>
-        <h2 className='login my-5' id='hlogin'>Log into <span className='loginh21'>My</span><span className='loginh22'>Notes</span></h2>
+        <h2 className='login my-5 hlogin' >Log into <span className='loginh21'>My</span><span className='loginh22'>Notes</span></h2>
         <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" name='email' value={credentials.email} onChange={changeFormData} className="w-50 mx-auto loginField"/>
+            <Form.Control type="email" placeholder="Enter email" name='email' value={credentials.email} onChange={changeFormData} className="w-50  mx-auto loginField"/>
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>

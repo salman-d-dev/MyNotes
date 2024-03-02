@@ -6,7 +6,7 @@ import noteContext from "../../context/notes/noteContext";
 import { FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { FaTurnDown } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const NoteContext = useContext(noteContext);
   const { searchKeyword, setSearchKeyword } = NoteContext;
@@ -29,7 +29,8 @@ const Navbar = () => {
     localStorage.removeItem('token');
     NavigateTo('/signin')
 }
-  return (
+
+return (
     <div className="navbar">
       <div id="mainLogo">
         <span id="logoMy">My</span>
@@ -45,25 +46,28 @@ const Navbar = () => {
             placeholder="Search..."
             value={searchKeyword}
             onChange={handleSearchFieldDataChange}
+            disabled={!localStorage.getItem('token')}
           />
-          <button className="addNoteButton" onClick={handleSearch}>
+          <button className="addNoteButton" onClick={handleSearch} disabled={!localStorage.getItem('token')}>
             Search
           </button>
         </div>
         {localStorage.getItem('token')?
           (<span onClick={handleLogout}><MdLogout/> Logout</span>) :
-          null
+          <Link to="/signin">
+          <span>(Please Login)</span>
+          </Link>
         }
         <div className="followMe">
           <span>Follow Me <FaTurnDown/></span>
           <div className="social">
-            <a href="https://github.com/Salman-at-github" target="_blank" referrerPolicy="no-referrer">
+            <a href="https://github.com/Salman-at-github" target="_blank" rel="noreferrer">
             <FaGithub/>
             </a>
-            <a href="https://github.com/Salman-at-github" target="_blank" referrerPolicy="no-referrer">
+            <a href="https://www.linkedin.com/in/dev-salm/" target="_blank" rel="noreferrer">
             <FaLinkedin/>
             </a>
-            <a href="https://github.com/Salman-at-github" target="_blank" referrerPolicy="no-referrer">
+            <a href="https://github.com/Salman-at-github" target="_blank" rel="noreferrer">
             <FaFacebook/>
             </a>
             

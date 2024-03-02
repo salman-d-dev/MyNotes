@@ -1,0 +1,24 @@
+.footerMain {
+    padding: 4px;
+    background: none !important;
+    color: white !important;
+    border: 1px solid transparent; /* Set initial border to transparent */
+    border-image: linear-gradient(45deg, red, rgb(255, 109, 240), blue); /* Set gradient border */
+    border-image-slice: 1; /* Ensure the whole border is covered by the gradient */
+}
+
+.footerLine {
+    border-bottom: 1px solid transparent; /* Set initial border to transparent */
+    border-image: linear-gradient(45deg, red, rgb(255, 109, 240), blue); /* Set gradient border */
+    border-image-slice: 1; /* Ensure the whole border is covered by the gradient */
+}
+#logoutp{
+    text-decoration: underline;
+    cursor: pointer;
+    color: aqua;
+    display: inline;
+}
+
+#logoutp:hover{
+    color: white;
+}
