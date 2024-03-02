@@ -192,7 +192,6 @@ const Signup = (props) => {
                 </Tooltip>
               }
             >
-              <span className="d-inline-block">
                 <Button
                   variant="primary"
                   type="submit"
@@ -201,7 +200,6 @@ const Signup = (props) => {
                 >
                   Sign Up
                 </Button>
-              </span>
             </OverlayTrigger>
           )}
         </Form>

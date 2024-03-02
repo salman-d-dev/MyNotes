@@ -16,8 +16,6 @@ const Navbar = () => {
   };
 
   const handleSearch = () => {
-    // setSearchTriggered(true);
-    // filterNotes(searchKeyword);
   };
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => {
@@ -48,7 +46,7 @@ return (
             onChange={handleSearchFieldDataChange}
             disabled={!localStorage.getItem('token')}
           />
-          <button className="addNoteButton" onClick={handleSearch} disabled={!localStorage.getItem('token')}>
+          <button onClick={handleSearch} disabled={!localStorage.getItem('token')}>
             Search
           </button>
         </div>

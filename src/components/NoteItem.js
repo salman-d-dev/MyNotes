@@ -53,26 +53,22 @@ const NoteItem = (props) => {
             <Card.Title className='noteTitle'>{note.title}</Card.Title>
             <Card.Text className={expandNote ? 'noteExpanded' : 'noteDescription'}>
               {!expandNote && note.description.length > 100 ? (
-                <div>
-                  <div>
+                <>
                     {note.description.slice(0, 100)}
                     <span style={{ color: 'yellow', fontSize: '1.2rem' }}> .....</span>
-                  </div>
-                  <div>
                     <span className='readMoreButton mt-2' onClick={() => setExpandNote(!expandNote)}>
                       Read More
                     </span>
-                  </div>
-                </div>
+                </>
               ) : (
-                note.description
+                  note.description
               )}
               {expandNote && note.description.length > 100 && (
-                <div>
+                <>
                   <span className='readMoreButton mt-2' onClick={() => setExpandNote(!expandNote)}>
                     Close
                   </span>
-                </div>
+                </>
               )}
             </Card.Text>
             <Card.Subtitle className='my-3 noteTag'>{note.tag}</Card.Subtitle>

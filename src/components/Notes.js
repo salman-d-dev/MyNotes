@@ -143,20 +143,9 @@ useEffect(
   return (
     <>
 
-      <div className="sudoNavbar">
-        <div>
-          <button
-            onClick={() => {
-              setShowAddNote(!showAddNote);
-            }}
-            className="addNoteButton" id="add"
-          >
-            {showAddNote ? "Close Form" : "Add Note"}
-          </button>
-        </div>
-
-
-      </div>
+      <button onClick={() => {setShowAddNote(!showAddNote);}} className="addNoteButton" id="add">
+        {showAddNote ? "Close Form" : "Add Note"}
+      </button>
 
       {showAddNote ? <AddNotesForm setShowAddNote={setShowAddNote} showAlert={props.showAlert} /> : ""}
 
@@ -295,12 +284,3 @@ useEffect(
 };
 
 export default Notes;
-
-
-//   In the given code, there are two instances where the notes are filtered based on search keywords. The first instance is inside the handleSearchFieldDataChange function, which is triggered on the onChange event of the search input field. The second instance is inside the useEffect hook at the bottom of the code.
-
-// The reason for having two separate filtering implementations is to handle different scenarios efficiently:
-
-// handleSearchFieldDataChange: This function is responsible for filtering the notes as the user types in the search input field. It is triggered on every change in the input value and updates the searchedNotes state immediately, providing real-time search results to the user. This approach ensures a responsive and interactive search experience.
-
-// useEffect hook at the bottom: This hook is responsible for filtering the notes whenever the searchKeyword or notes state changes. It provides a fallback mechanism to update the searchedNotes state if there are any changes to the searchKeyword or notes array outside of the search input field. This ensures that the search results remain up to date even if the user navigates away from the search input field or performs other actions that may affect the notes.

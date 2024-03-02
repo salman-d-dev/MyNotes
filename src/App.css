@@ -88,7 +88,7 @@ div #logo img {
 
 
 .noteCard {
-  background: url('../public/lightPurple.gif') no-repeat center/cover;
+  background: url('../public/lightPurple.gif');
   color: white;
   border-color: aqua;
 }
@@ -204,9 +204,10 @@ div #logo img {
 
 
 .readMoreButton {
-  color: rgb(7, 46, 240);
+  color: rgb(56, 89, 255);
   font-size: small;
   cursor: pointer;
+  /* display: block; */
 }
 
 .addNoteButton {
@@ -216,6 +217,7 @@ div #logo img {
   padding: 0.5rem 0.5rem;
   box-shadow: 0 1px 4px rgb(11, 144, 232);
   transition: box-shadow 0.3s ease-in-out;
+  margin-top: 2rem;
 }
 
 .addNoteButton:hover {
@@ -230,6 +232,7 @@ div #logo img {
   bottom: 2rem;
   left: 2rem;
   z-index: 998;
+
 }
 .addNotesForm {
   position: fixed;
@@ -250,7 +253,7 @@ div #logo img {
   gap: 1rem;
   justify-content: center;
   align-items: start;
-  padding: 0 3rem;
+  padding: 0 2rem;
 }
 
 @media screen and (min-width: 576px) {
@@ -261,6 +264,7 @@ div #logo img {
 }
 
 @media screen and (min-width: 768px) {
+  
   .notesBox {
     grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens and up */
   }
@@ -546,6 +550,10 @@ div #logo img {
 }
 
 @media only screen and (max-width: 768px) {
+  #add{
+    width: fit-content !important;
+    padding: 0.3rem 1rem !important;
+  }
   .addNotesForm{
     width: 80%;
     margin: 0 !important;
@@ -555,6 +563,11 @@ div #logo img {
   .addNotesForm input{
     width: 100% !important;
     margin: 0;
+  }
+  .addNoteButton, .addNoteButton:disabled{
+    padding: 0.5rem 2rem !important;
+    font-size: 1rem !important;
+    width: 10rem;
   }
 
   .searchBar {
