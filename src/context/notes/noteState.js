@@ -1,4 +1,5 @@
 // THIS IS WHAT CONNECTS THE BACKENED API TO FRONT END, WE USE 'fetch api'
+import { debounce } from "../../utils/debounce";
 import noteContext from "./noteContext";
 import { useEffect, useState } from "react";
 
@@ -44,10 +45,12 @@ const host = process.env.REACT_APP_BACKEND_HOST;
     }
   };
 
+  const debouncedFilterNotes = debounce(filterNotes , 1000);
   useEffect(()=>{
     if(searchKeyword?.length>0){
       setSearchTriggered(true)
-      filterNotes(searchKeyword)
+      // filterNotes(searchKeyword)
+      debouncedFilterNotes(searchKeyword)
     }
     else{
       setSearchTriggered(false)

@@ -85,7 +85,10 @@ div #logo img {
   color: black;
 }
 
-
+.homepage{
+  padding-bottom: 4rem;
+  min-height: 80vh;
+}
 
 .noteCard {
   background: url('../public/lightPurple.gif');
@@ -115,6 +118,7 @@ div #logo img {
 .noteTag {
   color: rgb(51, 255, 0);
   font-style: italic;
+  font-size: .75rem;
 }
 
 .fabIcons {
@@ -286,7 +290,7 @@ div #logo img {
   }
 
   100% {
-    box-shadow: 0 2px 1.5rem rgb(255, 142, 4);
+    box-shadow: 0 2px 1.5rem rgb(2, 78, 255);
   }
 }
 

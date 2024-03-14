@@ -7,6 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import ConfirmComp from "./ConfirmComp";
+import NoResult from "./noresult/NoResult";
 
 const Notes = (props) => {
   const NavigateTo = useNavigate();
@@ -248,7 +249,7 @@ useEffect(
       </div>
       <div className="row notesBox">
         {/* Display filtered notes if search is triggered, otherwise display all notes */}
-        {searchTriggered ? (
+        {searchTriggered ? ( filteredNotes?.length>0? (
           filteredNotes.map((note) => (
             <NoteItem
               key={note._id}
@@ -262,6 +263,8 @@ useEffect(
             />
           ))
         ) : (
+              <NoResult/>
+        ) ) : (
           notes.map((note) => (
             <NoteItem
               key={note._id}

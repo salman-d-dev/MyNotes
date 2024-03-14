@@ -13,11 +13,8 @@ const Home = (props) => {
     }
   }, []);
   return (
-    <div style={{paddingBottom:'4rem'}}>
-
-      <div className='homecont'>
+    <div className='homepage'>
       <Notes showAlert={showAlert}/>
-      </div>
     </div>
         )
 }

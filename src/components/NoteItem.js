@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import noteicon from './static/noteicon.png';
 import deleteIcon from './static/deleteIcon.svg';
 import editIcon from './static/editIcon.svg';
+import { formatTime } from '../utils/helpers';
 
 const NoteItem = (props) => {
   const { note, updateNote,onClickDelete,searched } = props;
@@ -46,7 +47,6 @@ const NoteItem = (props) => {
   }, []);
 
   return (
-      //<div className='col-md-3'>
         <Card className={searched? "my-3 noteCard searchedNoteCard":"my-3 noteCard"} >
           <Card.Img variant='top' src={noteicon} id='noteicon' />
           <Card.Body className='pb-2'>
@@ -74,13 +74,7 @@ const NoteItem = (props) => {
             <Card.Subtitle className='my-3 noteTag'>{note.tag}</Card.Subtitle>
 
             <div className='noteDate'>
-              {new Date(note.date).toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}
+              {formatTime(note.date)}
             </div>
             
             <img
@@ -94,7 +88,6 @@ const NoteItem = (props) => {
 
           </Card.Body>
         </Card>
-      //</div>
   );
 };
 
