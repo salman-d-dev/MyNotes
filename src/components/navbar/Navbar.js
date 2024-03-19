@@ -1,31 +1,56 @@
-import React, { useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { IoMdMenu } from "react-icons/io";
 import { AiOutlineCloseSquare } from "react-icons/ai";
-import noteContext from "../../context/notes/noteContext";
+import { useNoteContext } from "../../context/notes/noteContext";
 import { FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { FaTurnDown } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { searchNotes } from "../../api/searchNotes";
+import { ImSpinner9 } from "react-icons/im";
 const Navbar = () => {
-  const NoteContext = useContext(noteContext);
-  const { searchKeyword, setSearchKeyword } = NoteContext;
+  const { searchKeyword, setSearchKeyword, setSearchTriggered, setSearchResults,setNotes,buttonLoading, setButtonLoading, setQuery } = useNoteContext();
 
-  const handleSearchFieldDataChange = (e) => {
-    setSearchKeyword(e.target.value);
-  };
-
-  const handleSearch = () => {
-  };
+  const {pathname} = useLocation();
+  
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => {
     setShowMenu((prevOption) => !prevOption);
   };
 
-  const NavigateTo = useNavigate();
+
+  //close menu on navigation
+  useEffect(()=>{
+    setShowMenu(false)
+  },[pathname])
+
+  const handleSearchFieldDataChange = (e) => {
+    setSearchKeyword(e.target.value);
+  };
+
+  const handleSearch = async(e) => {
+    if(searchKeyword){
+      try {
+        setButtonLoading(true)
+        setQuery(searchKeyword)
+        const data = await searchNotes(1,8, searchKeyword)
+        setSearchTriggered(true)
+        setButtonLoading(false)
+        setNotes(data?.notes)
+        setSearchResults(data?.totalResults)
+        
+      } catch (error) {
+        throw error
+      }
+    }
+  };
+ 
+
+  const navigateTo = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('token');
-    NavigateTo('/signin')
+    navigateTo('/signin')
 }
 
 return (
@@ -47,7 +72,7 @@ return (
             disabled={!localStorage.getItem('token')}
           />
           <button onClick={handleSearch} disabled={!localStorage.getItem('token')}>
-            Search
+            {buttonLoading? <ImSpinner9 className="searchIcon"/> : "Search"}
           </button>
         </div>
         {localStorage.getItem('token')?

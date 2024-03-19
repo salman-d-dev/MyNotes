@@ -229,6 +229,12 @@ div #logo img {
   margin-top: 2rem;
 }
 
+#addNote{
+  position: fixed;
+  z-index: 998;
+  bottom: 2rem;
+  left: 2rem;
+}
 .addNoteButton:hover {
   box-shadow: 0 2px 4px rgb(11, 144, 232);
   animation: button-border 1s infinite alternate;
@@ -263,6 +269,14 @@ div #logo img {
   justify-content: center;
   align-items: start;
   padding: 0 2rem;
+}
+
+#clearSearch{
+  color: red;
+  cursor: pointer;
+}
+#clearSearch:hover{
+  color: cyan;
 }
 
 @media screen and (min-width: 576px) {

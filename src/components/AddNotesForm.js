@@ -1,21 +1,39 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import noteContext from '../context/notes/noteContext';
 import { AiOutlineCloseSquare } from "react-icons/ai";
+import { addNote } from '../api/addNote';
+import { useNoteContext } from '../context/notes/noteContext';
 
 
 const AddNotesForm = (props) => {
-  const context = useContext(noteContext);
-  const { addNote } = context;
-  const [note, setNote] = useState({ title: '', description: '', tag: '' });
+  const [note, setNote] = useState({ title: '', description: '', tag: '', date: new Date() });
 
-  const handleAddNote = (e) => {
-    props.showAlert('Note added successfully', 'success');
+  const {setShowAddForm, setNotes} = useNoteContext()
+  const handleAddNote = async (e) => {
     e.preventDefault();
-    addNote(note.title, note.description, note.tag);
-    setNote({ id: '', title: '', description: '', tag: '' });
-  };
+  
+    // Create a copy of the current note
+    const newNote = { ...note };
+  
+    // Add note backend
+    const success = await addNote(newNote.title, newNote.description, newNote.tag);
+  
+    if (success) {
+      // Update the date field of the new note to the current time
+      newNote.date = new Date();
+      
+      props.showAlert('Note added successfully', 'success');
+      
+      // Add note client
+      setNotes((prevNotes) => [newNote, ...prevNotes]);
+      
+      // Reset note state with empty values
+      setNote({ title: '', description: '', tag: '' });
+    } else {
+      props.showAlert("Something went wrong", "danger");
+    }
+  }
 
   const changeNote = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -23,7 +41,7 @@ const AddNotesForm = (props) => {
 
   return (
     <div className="my-5 addNotesForm">
-        <AiOutlineCloseSquare className="closeButton" onClick={()=>{props.setShowAddNote(false)}} />
+        <AiOutlineCloseSquare className="closeButton" onClick={()=>{setShowAddForm(false)}} />
       <h3 className="text-center mb-4">Add a Note</h3>
       <Form>
         <Form.Group controlId="formTitle" className="text-center mx-auto">

@@ -1,44 +1,37 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import noteContext from "../context/notes/noteContext";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import NoteItem from "./NoteItem";
-import AddNotesForm from "./AddNotesForm";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import ConfirmComp from "./ConfirmComp";
-import NoResult from "./noresult/NoResult";
 import useGetNotes from "../hooks/useGetNotes";
 import Loading from "./loading/Loading";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useNoteContext } from "../context/notes/noteContext";
+import AddNotesForm from "./AddNotesForm";
+import EditNoteForm from "./EditNoteForm";
 
 const Notes = (props) => {
   const NavigateTo = useNavigate();
-  const NoteContext = useContext(noteContext);
-  const {
-    // notes,
-    fetchAllNotes,
-    editNote,
-    deleteNote,
-    searchTriggered,
-    filteredNotes,
-  } = NoteContext;
 
+  const {
+    searchTriggered,
+    setSearchTriggered,
+    searchResults,
+    query,
+    setNotes,
+    buttonLoading,
+    setSearchKeyword,
+    editMode,
+    showAddForm,
+    setShowAddForm,
+  } = useNoteContext();
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       NavigateTo("/signin");
     }
   }, []);
 
-  ///
   const [pageNum, setPageNum] = useState(1);
 
-  const { loading, error, notes, hasMore } = useGetNotes(pageNum);
+  const { loading, error, notes, hasMore } = useGetNotes(pageNum, 8);
 
   const intObserver = useRef();
   const lastNoteRef = useCallback(
@@ -63,11 +56,37 @@ const Notes = (props) => {
   if (Object.keys(error).length > 0) {
     return <h1>Error bruh</h1>;
   }
-  ///
+  const handleClearSearch = () => {
+    setSearchTriggered(false);
+    setSearchKeyword("");
+    //clear notes for re-fetching
+    setNotes([]);
+  };
+
+  const toggleAddForm = () => {
+    setShowAddForm((prevState) => !prevState);
+  };
 
   return (
     <div>
+      <button className="addNoteButton" id="addNote" onClick={toggleAddForm}>
+        {showAddForm ? "Close Form" : "Add Note"}
+      </button>
+      {showAddForm && <AddNotesForm {...props} />}
+      {editMode && <EditNoteForm {...props} />}
       <h1 className="mainHead">Your Notes</h1>
+      {searchTriggered && !buttonLoading && (
+        <h1 className="mainHead">
+          {`${searchResults} ${
+            searchResults === 1 ? "Result" : "Results"
+          } found for "${query}"`}
+          <IoIosCloseCircleOutline
+            onClick={handleClearSearch}
+            id="clearSearch"
+            title="Clear Search"
+          />
+        </h1>
+      )}
       <div className="row notesBox">
         {/* Display filtered notes if search is triggered, otherwise display all notes */}
         {notes?.map((note, index) => {
@@ -101,8 +120,10 @@ const Notes = (props) => {
           );
         })}
       </div>
-        {loading && <Loading/>}
-        {(!loading && notes.length === 0) && <h2 className="mainHead">You haven't created any notes</h2>}
+      {loading && <Loading />}
+      {!loading && !searchTriggered && notes.length === 0 && (
+        <h2 className="mainHead">You haven't created any notes</h2>
+      )}
     </div>
   );
 };

@@ -6,7 +6,7 @@ const host = process.env.REACT_APP_BACKEND_HOST;
 const AuthState = (props) => {
   const sendOTPf = async (email) => {
     try {
-      const response = await fetch(`${host}/api/auth/sendotp`, {
+      const response = await fetch(`${host}/api/v1/auth/sendotp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const AuthState = (props) => {
 
   const verifyOTPf = async (email, OTP) => {
     try {
-      const response = await fetch(`${host}/api/auth/verifyotp`, {
+      const response = await fetch(`${host}/api/v1/auth/verifyotp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const AuthState = (props) => {
 
   const signUpF = async (name, email, password) => {
     try {
-      const response = await fetch(`${host}/api/auth/signup`, {
+      const response = await fetch(`${host}/api/v1/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const AuthState = (props) => {
 
   const signInF = async (email, password) => {
     try {
-      const response = await fetch(`${host}/api/auth/signin`, {
+      const response = await fetch(`${host}/api/v1/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const AuthState = (props) => {
 
   const getUserDataF = async () => {
     try {
-      const response = await fetch(`${host}/api/auth/user/getdetails`, {
+      const response = await fetch(`${host}/api/v1/auth/user/getdetails`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const AuthState = (props) => {
 
   const sendOTPAgainF = async (email) => {
     try {
-      const response = await fetch(`${host}/api/auth/sendotpagain`, {
+      const response = await fetch(`${host}/api/v1/auth/sendotpagain`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const AuthState = (props) => {
 
   const resetPasswordF = async (email, password) => {
     try {
-      const response = await fetch(`${host}/api/auth/resetpassword`, {
+      const response = await fetch(`${host}/api/v1/auth/resetpassword`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

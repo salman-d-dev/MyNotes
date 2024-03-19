@@ -5,9 +5,13 @@ import noteicon from "./static/noteicon.png";
 import deleteIcon from "./static/deleteIcon.svg";
 import editIcon from "./static/editIcon.svg";
 import { formatTime } from "../utils/helpers";
+import { useNoteContext } from "../context/notes/noteContext";
+import { deleteNote } from "../api/deleteNote";
 
 const NoteItem = forwardRef((props, ref) => {
   const { note } = props;
+
+  const {setSelectedNote, setEditMode, setNotes} = useNoteContext();
 
   const [expandNote, setExpandNote] = useState(false);
 
@@ -43,6 +47,24 @@ const NoteItem = forwardRef((props, ref) => {
       document.removeEventListener("keydown", handleEscapeKey);
     };
   }, []);
+
+  const handleEditNote = async() =>{
+    setSelectedNote(note)
+    setEditMode(true)
+  }
+
+  const handleDelete = async() =>{
+    //backend delete
+    const success = await deleteNote(note._id);
+    if(success){
+      props.showAlert("Note deleted", 'success')
+
+      // frontend delete
+      setNotes((prevNotes) => prevNotes.filter((noteItem)=> noteItem._id !== note._id));
+    } else {
+      props.showAlert("Something went wrong", "danger")
+    }
+  }
 
   const body = (
     <Card
@@ -88,9 +110,7 @@ const NoteItem = forwardRef((props, ref) => {
           src={editIcon}
           alt="Edit Icon"
           className="editIconSvg"
-          onClick={() => {
-            // updateNote(note);
-          }}
+          onClick={handleEditNote}
           onMouseOver={handleMouseOverEdit}
           onMouseOut={handleMouseOutEdit}
         />
@@ -102,7 +122,7 @@ const NoteItem = forwardRef((props, ref) => {
           src={deleteIcon}
           alt="Delete Icon"
           className="deleteIconSvg"
-          // onClick={onClickDelete}
+          onClick={handleDelete}
           onMouseOver={handleMouseOverDel}
           onMouseOut={handleMouseOutDel}
         />

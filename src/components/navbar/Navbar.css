@@ -107,8 +107,8 @@
 }
 
 #searchBar button{
-  width: fit-content !important;
-  font-size: 0.8rem !important;
+  min-width: 4rem;
+  font-size: 0.8rem ;
 
   padding: 2px 4px !important;
   background-color: black;
@@ -121,7 +121,18 @@
 #searchBar button:hover{
   scale: 110%;
 }
-
+.searchIcon{
+  animation: spinnerRotate 1s infinite linear;
+}
+@keyframes spinnerRotate{
+  0%{
+      transform: rotate(0deg);
+      
+  }
+  100%{
+      transform: rotate(360deg);
+  }
+}
 .followMe{
     display: flex;
     justify-content: center;

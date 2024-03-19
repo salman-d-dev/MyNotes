@@ -44,7 +44,6 @@ const [countdown, setCountDown] = useState(120);
         clearInterval(timer);
         setCountDown(120)
       }, 120000);
-      console.log("OTP sent");
     }
   };
   const handleVerifyOTP = async(e) => {
