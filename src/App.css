@@ -211,6 +211,11 @@ div #logo img {
   color: rgb(10, 75, 240);
 }
 
+.resendTimer{
+  position: absolute;
+  bottom: 2.5rem;
+  color: yellow;
+}
 
 .readMoreButton {
   color: rgb(56, 89, 255);
@@ -493,6 +498,7 @@ div #logo img {
 }
 
 .resetPassContainer{
+  position: relative;
   height: 80vh;
   width: 100%;
   display: flex;

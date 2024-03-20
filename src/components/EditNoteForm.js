@@ -1,12 +1,11 @@
-import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { AiOutlineCloseSquare } from "react-icons/ai";
-import { editNote } from "../api/editNote";
+import { editNote } from "../api/notes";
 import { useNoteContext } from "../context/notes/noteContext";
 
 const EditNoteForm = (props) => {
-  const { selectedNote, setSelectedNote, setEditMode, notes, setNotes } =
+  const { selectedNote, setSelectedNote, setEditMode, setNotes } =
     useNoteContext();
 
   const handleSaveEditNote = async (e) => {

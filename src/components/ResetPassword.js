@@ -1,16 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import authContext from "../context/notes/authContext";
 import { useNavigate } from "react-router-dom";
+import { resendOTP, resetPassword, verifyOTP } from "../api/auth";
+import { throttle } from "../utils/throttle";
 
 const ResetPassword = () => {
+
+  //throttle the api calls by X sec
+  const throttledResendOTP = throttle(resendOTP, 5000);
+  const throttledResetPass = throttle(resetPassword, 2000);
+  const throttledVerifyOTP = throttle(verifyOTP, 2000);
+
   const [formData, setFormData] = useState({
     email: "",
     OTP: "",
     password: "",
     repeatpassword:""
   });
-  const { sendOTPAgainF, verifyOTPf, resetPasswordF } = useContext(authContext);
 
   //enable data entry
   const changeFormData = (field) => {
@@ -27,7 +33,7 @@ const [countdown, setCountDown] = useState(120);
 
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
-    const jsonresult = await sendOTPAgainF(formData.email);
+    const jsonresult = await throttledResendOTP(formData.email);
     if (jsonresult.success) {
       setOtpSent(true);
       setResendButtonDisabled(true);
@@ -48,7 +54,7 @@ const [countdown, setCountDown] = useState(120);
   };
   const handleVerifyOTP = async(e) => {
     e.preventDefault();
-    const jsonresult = await verifyOTPf(formData.email,formData.OTP);
+    const jsonresult = await throttledVerifyOTP(formData.email,formData.OTP);
     if (jsonresult.success){
       setOtpVerified(true);
     }
@@ -58,7 +64,7 @@ const [countdown, setCountDown] = useState(120);
   
   const handleNewPassSubmit = async(e) =>{
     e.preventDefault();
-    const jsonresult =await resetPasswordF(formData.email,formData.password);
+    const jsonresult = await throttledResetPass(formData.email,formData.password);
     if (jsonresult.success){
       navigateTo('/signin')
     }
@@ -117,7 +123,7 @@ const [countdown, setCountDown] = useState(120);
                     <div>
                   <Form onSubmit={handleVerifyOTP}>
                     <Form.Group className="mb-3" controlId="respasOTP">
-                      <Form.Label>OTP</Form.Label>
+                      <Form.Label>OTP Sent</Form.Label>
                       <Form.Control
                         placeholder="Enter OTP"
                         name="OTP"
@@ -133,7 +139,7 @@ const [countdown, setCountDown] = useState(120);
                   <button className="addNoteButton mx-2" onClick={handleEmailSubmit} disabled={resendButtonDisabled}>Resend</button>
                 </div>
                 {resendButtonDisabled? (
-                  <div className="mt2">
+                  <div className="resendTimer">
                     Can resend OTP in {countdown} {countdown<=1?"second":"seconds"}.
                   </div>
                 ):null}

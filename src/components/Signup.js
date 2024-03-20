@@ -1,11 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import authContext from '../context/notes/authContext';
+import { sendOTP, signUp, verifyOTP } from '../api/auth';
+import { throttle } from '../utils/throttle';
 
 const Signup = (props) => {
   const [credentials, setCredentials] = useState({
@@ -18,17 +19,20 @@ const Signup = (props) => {
 
   const navigateTo = useNavigate();
   const [signUpClicked, setSignUpClicked] = useState(false);
-  const { signUpF, sendOTPf, verifyOTPf } = useContext(authContext);
   const passwordsMatch = credentials.password === credentials.cpassword;
   const [OTPsent, setOTPsent] = useState(false);
   const [resendButtonDisabled, setResendButtonDisabled] = useState(false);
   const [countdown, setCountDown] = useState(120);
 
+  //add delay of 5s for each request
+  const throttledSendOTP = throttle(sendOTP, 5000);
+  const throttledSignUp = throttle(signUp, 5000);
+  const throttledVerifyOTP = throttle(verifyOTP, 5000);
   const handleSignUp = async (e) => {
     e.preventDefault();
     
     try {
-      const sendotpjson = await sendOTPf(credentials.email);
+      const sendotpjson = await throttledSendOTP(credentials.email);
       if (sendotpjson.success) {
         setSignUpClicked(true); // Always set to true when signup button is clicked
         props.showAlert(`OTP sent to ${credentials.email}`, 'success');
@@ -56,9 +60,9 @@ const Signup = (props) => {
     e.preventDefault();
     const { OTP, name, email, password } = credentials;
     try {
-      await verifyOTPf(email, OTP);
+      await throttledVerifyOTP(email, OTP);
 
-      const json = await signUpF(name, email, password);
+      const json = await throttledSignUp(name, email, password);
       if (json.success) {
         props.showAlert('User created successfully', 'success');
         navigateTo('/signin');
@@ -74,7 +78,7 @@ const Signup = (props) => {
     setCountDown(120);
 
     try {
-      const sendotpjson = await sendOTPf(credentials.email);
+      const sendotpjson = await throttledSendOTP(credentials.email);
       if (sendotpjson.success) {
         props.showAlert(`OTP sent to ${credentials.email}`, 'success');
         setOTPsent(true);

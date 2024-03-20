@@ -21,7 +21,15 @@
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
- 
+
+#mainLogo{
+  pointer-events: all !important;
+  cursor: pointer;
+}
+#mainLogo a{
+  text-decoration: none !important;
+}
+
 #logoMy{
         color: #FF4500;
         font-size: 3rem;

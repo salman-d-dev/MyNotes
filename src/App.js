@@ -7,7 +7,6 @@ import Signup from './components/Signup';
 import { useState } from 'react';
 import Footer from './components/footer/Footer';
 import NoteState from './context/notes/noteState';
-import AuthState from './context/notes/authState';
 import ResetPassword from './components/ResetPassword';
 import Navbar from './components/navbar/Navbar';
 
@@ -25,9 +24,8 @@ function App() {
   }
   return (
     // WRAP EVERYTHING INTO NoteState context api to acess it from any component  BY IMPORTING useCONTEXT
-    <NoteState>
-        <AuthState>
       <Router>
+    <NoteState>
           <Navbar/>
         <div className='container'>
         <Alertcomp alert={alert} />
@@ -43,9 +41,8 @@ function App() {
           </Routes>
         </div>
         <Footer />
-      </Router>
-        </AuthState>
     </NoteState>
+      </Router>
   );
 }
 

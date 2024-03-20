@@ -6,13 +6,12 @@ import { useNoteContext } from "../../context/notes/noteContext";
 import { FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { FaTurnDown } from "react-icons/fa6";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { searchNotes } from "../../api/searchNotes";
+import { Link } from "react-router-dom";
+import { searchNotes } from "../../api/notes";
 import { ImSpinner9 } from "react-icons/im";
 const Navbar = () => {
-  const { searchKeyword, setSearchKeyword, setSearchTriggered, setSearchResults,setNotes,buttonLoading, setButtonLoading, setQuery } = useNoteContext();
+  const { searchKeyword, setSearchKeyword, setSearchTriggered, setSearchResults,setNotes,buttonLoading, setButtonLoading, setQuery, path , navigateTo } = useNoteContext();
 
-  const {pathname} = useLocation();
   
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => {
@@ -23,7 +22,12 @@ const Navbar = () => {
   //close menu on navigation
   useEffect(()=>{
     setShowMenu(false)
-  },[pathname])
+
+    //if user has logged in already, redirect to home
+    if(localStorage.getItem('token')){
+      navigateTo("/")
+    }
+  },[path])
 
   const handleSearchFieldDataChange = (e) => {
     setSearchKeyword(e.target.value);
@@ -47,7 +51,6 @@ const Navbar = () => {
   };
  
 
-  const navigateTo = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigateTo('/signin')
@@ -56,8 +59,10 @@ const Navbar = () => {
 return (
     <div className="navbar">
       <div id="mainLogo">
+        <Link to="/signin">
         <span id="logoMy">My</span>
         <span id="logoNotes">Notes</span>
+        </Link>
       </div>
       <IoMdMenu className="menu-icon" onClick={toggleMenu} />
       <div className="dropdown" id={showMenu ? "show" : "noshow"}>

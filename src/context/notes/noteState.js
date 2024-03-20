@@ -1,4 +1,5 @@
 
+import { useLocation, useNavigate } from "react-router-dom";
 import noteContext from "./noteContext";
 import { useState } from "react";
 
@@ -14,6 +15,11 @@ const NoteState = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [showAddForm, setShowAddForm ] = useState(false)
 
+  const navigateTo = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
+
+
   
   return (
     <noteContext.Provider
@@ -27,7 +33,8 @@ const NoteState = (props) => {
       query, setQuery,
       selectedNote, setSelectedNote,
       editMode, setEditMode,
-      showAddForm, setShowAddForm
+      showAddForm, setShowAddForm,
+      navigateTo, path
     }}
   >
     {props.children}

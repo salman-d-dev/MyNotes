@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { fetchNotes } from '../api/fetchNotes';
+import { fetchNotes } from '../api/notes';
 import noteContext, { useNoteContext } from '../context/notes/noteContext';
 import { debounce } from '../utils/debounce';
 

@@ -6,7 +6,7 @@ import deleteIcon from "./static/deleteIcon.svg";
 import editIcon from "./static/editIcon.svg";
 import { formatTime } from "../utils/helpers";
 import { useNoteContext } from "../context/notes/noteContext";
-import { deleteNote } from "../api/deleteNote";
+import { deleteNote } from "../api/notes";
 
 const NoteItem = forwardRef((props, ref) => {
   const { note } = props;

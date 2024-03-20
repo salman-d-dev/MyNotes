@@ -1,10 +1,7 @@
-import React from 'react';
-import authContext from './authContext';
-
 const host = process.env.REACT_APP_BACKEND_HOST;
 
-const AuthState = (props) => {
-  const sendOTPf = async (email) => {
+export const sendOTP = async (email) => {
+    if(!email) return;
     try {
       const response = await fetch(`${host}/api/v1/auth/sendotp`, {
         method: 'POST',
@@ -20,7 +17,8 @@ const AuthState = (props) => {
     }
   };
 
-  const verifyOTPf = async (email, OTP) => {
+export const verifyOTP = async (email, OTP) => {
+    if(!email || !OTP) return;
     try {
       const response = await fetch(`${host}/api/v1/auth/verifyotp`, {
         method: 'POST',
@@ -37,7 +35,8 @@ const AuthState = (props) => {
     }
   };
 
-  const signUpF = async (name, email, password) => {
+export const signUp = async (name, email, password) => {
+    if(!name || !email || !password) return;
     try {
       const response = await fetch(`${host}/api/v1/auth/signup`, {
         method: 'POST',
@@ -53,7 +52,8 @@ const AuthState = (props) => {
     }
   };
 
-  const signInF = async (email, password) => {
+export const signIn = async (email, password) => {
+    if(!email || !password) return;
     try {
       const response = await fetch(`${host}/api/v1/auth/signin`, {
         method: 'POST',
@@ -70,9 +70,9 @@ const AuthState = (props) => {
     }
   };
 
-  const getUserDataF = async () => {
+ export const getUserData = async () => {
     try {
-      const response = await fetch(`${host}/api/v1/auth/user/getdetails`, {
+      const response = await fetch(`${host}/api/v1/auth/user/details`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -84,25 +84,27 @@ const AuthState = (props) => {
       console.error(error);
       return { success: false, error: 'An error occurred while fetching user data' };
     }
-  };
+};
 
-  const sendOTPAgainF = async (email) => {
-    try {
-      const response = await fetch(`${host}/api/v1/auth/sendotpagain`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email }),
-      });
-      return await response.json();
-    } catch (error) {
-      console.error(error);
-      return { success: false, error: 'An error occurred while sending OTP again' };
-    }
-  };
+export const resendOTP = async (email) => {
+    if(!email) return;
+  try {
+    const response = await fetch(`${host}/api/v1/auth/sendotpagain`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email }),
+    });
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: 'An error occurred while sending OTP again' };
+  }
+};
 
-  const resetPasswordF = async (email, password) => {
+export  const resetPassword = async (email, password) => {
+    if(!email || !password) return;
     try {
       const response = await fetch(`${host}/api/v1/auth/resetpassword`, {
         method: 'POST',
@@ -117,22 +119,3 @@ const AuthState = (props) => {
       return { success: false, error: 'An error occurred while resetting password' };
     }
   };
-
-  return (
-    <authContext.Provider
-      value={{
-        sendOTPf,
-        verifyOTPf,
-        signInF,
-        getUserDataF,
-        signUpF,
-        sendOTPAgainF,
-        resetPasswordF,
-      }}
-    >
-      {props.children}
-    </authContext.Provider>
-  );
-};
-
-export default AuthState;

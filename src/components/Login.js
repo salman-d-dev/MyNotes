@@ -1,25 +1,30 @@
-import React, { useState, useContext } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import authContext from '../context/notes/authContext';
+import { signIn } from '../api/auth';
+import { useNoteContext } from '../context/notes/noteContext';
+import { throttle } from '../utils/throttle';
 
 const Login = (props) => {
-  const NavigateTo = useNavigate()
+
+  //delay function call by 2s
+  const throttledSignIn = throttle(signIn, 2000)
+
+  const {navigateTo} = useNoteContext()
+
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const myauthcontext = useContext(authContext)
-  const {signInF} = myauthcontext;
   //to show forgot password
   const [rightPassEntered, setRightPassEntered] = useState(true);
   
   const handleLogin = async (e) => {
     e.preventDefault();
-    const json = await signInF(credentials.email,credentials.password);
-    if (json.success) {
+    const json = await throttledSignIn(credentials.email,credentials.password);
+    if (json?.success) {
       //Save the auth token and redirect
       localStorage.setItem('token', json.authtoken);
       //get redir once auth token saved:
-      NavigateTo('/');
+      navigateTo('/');
       props.showAlert("Logged in successfully", "success")
     }
     else {

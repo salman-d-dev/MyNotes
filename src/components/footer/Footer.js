@@ -1,26 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import githubIcon from '../static/github.svg';
 import linkedInIcon from '../static/linkedin.svg';
 import facebookIcon from '../static/facebook.svg';
-import authContext from "../../context/notes/authContext";
 import './Footer.css'
+import { getUserData } from "../../api/auth";
 
 const Footer = () => {
     const [userName, setUserName] = useState(null);
-    const { getUserDataF } = useContext(authContext);
     const NavigateTo = useNavigate();
     const path = useLocation().pathname;
 
     useEffect(() => {
         const userInfo = async () => {
-            const gotData = await getUserDataF();
+            const gotData = await getUserData();
             setUserName(gotData.name);
         };
-        if (path !== '/signin' && path !== '/signin' && path !== '/resetpassword') {
+        if (path === "/") {
             userInfo();
         }
-    }, [NavigateTo]);
+    }, [path]);
 
     const openFB = () => {
         window.open('https://www.facebook.com', '_blank', 'noreferrer');
