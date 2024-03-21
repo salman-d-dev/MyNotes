@@ -7,6 +7,7 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useNoteContext } from "../context/notes/noteContext";
 import AddNotesForm from "./AddNotesForm";
 import EditNoteForm from "./EditNoteForm";
+import Error from "./error/Error";
 
 const Notes = (props) => {
   const NavigateTo = useNavigate();
@@ -53,8 +54,8 @@ const Notes = (props) => {
   );
 
   // If server issue, show error
-  if (Object.keys(error).length > 0) {
-    return <h1>Error bruh</h1>;
+  if (error?.message) {
+    return <Error error={error}/>;
   }
   const handleClearSearch = () => {
     setSearchTriggered(false);

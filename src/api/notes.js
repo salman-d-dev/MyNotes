@@ -1,28 +1,27 @@
 const host = process.env.REACT_APP_BACKEND_HOST;
 
 export const fetchNotes = async (page, limit) => {
-  try {
-    const response = await fetch(
-      `${host}/api/v1/notes/get?page=${page}&?limit=${limit}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-      }
-    );
-    //add a delay for the loading animation
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-
-    if (response.status === 200) {
-      const data = await response.json();
-      return data;
-    } else {
-      throw new Error("Failed to fetch notes");
+  const response = await fetch(
+    `${host}/api/v1/notes/get?page=${page}&?limit=${limit}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
     }
-  } catch (error) {
-    return error;
+  );
+
+  //add a delay for the loading animation
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
+  if (!response.ok) {
+    throw new Error(`Error ${response.status}: ${response.statusText}`);
+  }
+
+  if (response.status === 200) {
+    const data = await response.json();
+    return data;
   }
 };
 

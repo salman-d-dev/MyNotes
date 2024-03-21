@@ -1,0 +1,56 @@
+.errorBox{
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.firstDiag{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1.5px solid cyan;
+    width: max-content;
+    padding: 1rem 8rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+.firstDiag h2{
+    margin-bottom: 1rem;
+}
+.errorIcon{
+    font-size: 4rem;
+    color: red;
+}
+#suggestion{
+    font-size: 1.5rem;
+}
+.errorMessage{
+    position: absolute;
+    bottom: 0px;
+    left: 8px;
+    font-size: 0.5rem;
+    color: red;
+}
+#Rarrow{
+    font-size: 1rem;
+}
+
+@media only screen and (max-width: 720px){
+    .firstDiag{
+        width: 95vw;
+        background-color: black;
+    }
+    .firstDiag h2{
+        font-size: 1rem;
+        width: 80vw;
+        text-wrap: wrap;
+    }
+    #suggestion{
+        font-size: 1rem;
+    }
+}

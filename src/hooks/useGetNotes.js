@@ -20,11 +20,14 @@ export default function useGetNotes(page = 1, limit = 6) {
       try {
         const response = await (fetchNotes(page, limit));
         
-        setNotes(prev => [...prev, ...response.results]); // Replace existing posts with new ones
-        setHasMore(page < response.totalPages);
-        setLoading(false);
+        if(response){
+          setNotes(prev => [...prev, ...response.results]); // Replace existing posts with new ones
+          setHasMore(page < response.totalPages);
+          setLoading(false);
+        }
       } catch (e) {
         setLoading(false);
+        console.log("EEEEEEEEEE=============== ",e)
           setError({ message: e.message });
       }
     };
