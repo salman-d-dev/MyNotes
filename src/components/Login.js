@@ -42,6 +42,7 @@ const Login = (props) => {
     <div className='loginScreen'>
       <div className='my-3 text-center'>
         <h2 className='login my-5 hlogin' >Log into <span className='loginh21'>My</span><span className='loginh22'>Notes</span></h2>
+        {/* <h2 style={{height:"512px", width:"512px", border:"2px solid cyan",display:"flex",justifyContent:'center',alignItems:'center',fontSize:"12rem",boxSizing:"border-box",marginBottom:"2rem",boxShadow:"0px 10px 10px blue",}}><span className='loginh21'>M</span><span className='loginh22'>N</span></h2> */}
         <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>Email address</Form.Label>

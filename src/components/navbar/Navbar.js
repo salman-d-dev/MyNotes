@@ -9,6 +9,7 @@ import { FaTurnDown } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { searchNotes } from "../../api/notes";
 import { ImSpinner9 } from "react-icons/im";
+// import InstallPWA from "../InstallPWA";
 const Navbar = () => {
   const { searchKeyword, setSearchKeyword, setSearchTriggered, setSearchResults,setNotes,buttonLoading, setButtonLoading, setQuery, path , navigateTo } = useNoteContext();
 
@@ -58,6 +59,7 @@ const Navbar = () => {
 
 return (
     <div className="navbar">
+      {/* <InstallPWA/> */}
       <div id="mainLogo">
         <Link to="/signin">
         <span id="logoMy">My</span>

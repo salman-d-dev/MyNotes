@@ -27,7 +27,6 @@ export default function useGetNotes(page = 1, limit = 6) {
         }
       } catch (e) {
         setLoading(false);
-        console.log("EEEEEEEEEE=============== ",e)
           setError({ message: e.message });
       }
     };
