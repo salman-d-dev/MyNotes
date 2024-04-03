@@ -3,7 +3,7 @@ import { fetchNotes } from '../api/notes';
 import noteContext, { useNoteContext } from '../context/notes/noteContext';
 import { debounce } from '../utils/debounce';
 
-export default function useGetNotes(page = 1, limit = 6) {
+export default function useGetNotes(page = 1, limit = 8) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState({});
   const [hasMore, setHasMore] = useState(false);

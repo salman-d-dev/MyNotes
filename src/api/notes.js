@@ -13,7 +13,7 @@ export const fetchNotes = async (page, limit) => {
   );
 
   //add a delay for the loading animation
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   if (!response.ok) {
     throw new Error(`Error ${response.status}: ${response.statusText}`);
@@ -39,7 +39,7 @@ export const addNote = async (title, description, tag) => {
         body: JSON.stringify({ title, description, tag }),
       }
     );
-    if (response.status === 200) {
+    if (response.status === 201) {
       success = true;
     }
     return success;

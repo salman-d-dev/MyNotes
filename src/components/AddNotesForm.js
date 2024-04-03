@@ -16,24 +16,24 @@ const AddNotesForm = (props) => {
     // Create a copy of the current note
     const newNote = { ...note };
   
-    // Add note backend
-    const success = await addNote(newNote.title, newNote.description, newNote.tag);
+    try {
+      // Add note backend
+      const success = await addNote(newNote.title, newNote.description, newNote.tag);
   
-    if (success) {
-      // Update the date field of the new note to the current time
-      newNote.date = new Date();
-      
-      props.showAlert('Note added successfully', 'success');
-      
-      // Add note client
-      setNotes((prevNotes) => [newNote, ...prevNotes]);
-      
-      // Reset note state with empty values
-      setNote({ title: '', description: '', tag: '' });
-    } else {
+      // If successful, update the date field of the new note to the current time,
+      // add note client, and reset note state with empty values
+      if (success) {
+        newNote.date = new Date();
+        setNotes((prevNotes) => [newNote, ...prevNotes]);
+        setNote({ title: '', description: '', tag: '' });
+        props.showAlert('Note added successfully', 'success');
+      }
+    } catch (error) {
+      console.error("Error adding note:", error);
       props.showAlert("Something went wrong", "danger");
     }
   }
+  
 
   const changeNote = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -43,7 +43,7 @@ const AddNotesForm = (props) => {
     <div className="my-5 addNotesForm">
         <AiOutlineCloseSquare className="closeButton" onClick={()=>{setShowAddForm(false)}} />
       <h3 className="text-center mb-4">Add a Note</h3>
-      <Form>
+      <Form onSubmit={handleAddNote}>
         <Form.Group controlId="formTitle" className="text-center mx-auto">
           <Form.Label>Title</Form.Label>
           <Form.Control 
@@ -91,7 +91,6 @@ const AddNotesForm = (props) => {
             variant="primary"
             type="submit"
             className="mt-3 addNoteButton"
-            onClick={handleAddNote}
             disabled={note.title.length < 2 || note.description.length < 5}
           >
             Add Note
