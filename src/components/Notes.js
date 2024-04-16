@@ -8,6 +8,7 @@ import { useNoteContext } from "../context/notes/noteContext";
 import AddNotesForm from "./AddNotesForm";
 import EditNoteForm from "./EditNoteForm";
 import Error from "./error/Error";
+import { sortByDate } from "../utils/helpers";
 
 const Notes = (props) => {
   const NavigateTo = useNavigate();
@@ -55,7 +56,7 @@ const Notes = (props) => {
 
   // If server issue, show error
   if (error?.message) {
-    return <Error error={error}/>;
+    return <Error error={error} />;
   }
   const handleClearSearch = () => {
     setSearchTriggered(false);
@@ -67,6 +68,8 @@ const Notes = (props) => {
   const toggleAddForm = () => {
     setShowAddForm((prevState) => !prevState);
   };
+
+  const sortedNotes = sortByDate(notes);
 
   return (
     <div>
@@ -90,18 +93,13 @@ const Notes = (props) => {
       )}
       <div className="row notesBox">
         {/* Display filtered notes if search is triggered, otherwise display all notes */}
-        {notes?.map((note, index) => {
-          if (notes.length === index + 1) {
+        {sortedNotes.map((note, index) => {
+          if (sortedNotes.length === index + 1) {
             return (
               <NoteItem
-                key={index}
+                key={note._id}
                 note={note}
-                // updateNote={updateNote}
                 showAlert={props.showAlert}
-                // onClickDelete={() => {
-                //   setShowConfirmDel(true);
-                //   setSelectedNoteForDeletion(note._id);
-                // }}
                 ref={lastNoteRef} // Here, assign the ref to the last note
               />
             );
@@ -111,12 +109,7 @@ const Notes = (props) => {
             <NoteItem
               key={index}
               note={note}
-              // updateNote={updateNote}
               showAlert={props.showAlert}
-              // onClickDelete={() => {
-              //   setShowConfirmDel(true);
-              //   setSelectedNoteForDeletion(note._id);
-              // }}
             />
           );
         })}

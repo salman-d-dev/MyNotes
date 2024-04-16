@@ -18,12 +18,14 @@ const AddNotesForm = (props) => {
   
     try {
       // Add note backend
-      const success = await addNote(newNote.title, newNote.description, newNote.tag);
+      const {success, data} = await addNote(newNote.title, newNote.description, newNote.tag);
   
       // If successful, update the date field of the new note to the current time,
       // add note client, and reset note state with empty values
       if (success) {
         newNote.date = new Date();
+        newNote._id = data._id;
+
         setNotes((prevNotes) => [newNote, ...prevNotes]);
         setNote({ title: '', description: '', tag: '' });
         props.showAlert('Note added successfully', 'success');

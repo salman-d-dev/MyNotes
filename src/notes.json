@@ -1,0 +1,202 @@
+[
+    {
+        "title": "Meeting Agenda",
+        "description": "Discuss quarterly performance and future strategies.",
+        "tag": "meeting"
+    },
+    {
+        "title": "Grocery List",
+        "description": "Milk, eggs, bread, fruits, vegetables, and cheese.",
+        "tag": "groceries"
+    },
+    {
+        "title": "Workout Plan",
+        "description": "Cardio: 30 minutes. Strength training: Upper body.",
+        "tag": "fitness"
+    },
+    {
+        "title": "Recipe",
+        "description": "Chicken Alfredo Pasta: Pasta, chicken, Alfredo sauce, garlic, and parmesan cheese.",
+        "tag": "cooking"
+    },
+    {
+        "title": "Book Recommendation",
+        "description": "The Alchemist by Paulo Coelho - A philosophical novel about following your dreams.",
+        "tag": "books"
+    },
+    {
+        "title": "Travel Itinerary",
+        "description": "Flight to Paris, hotel booking, sightseeing, and dining reservations.",
+        "tag": "travel"
+    },
+    {
+        "title": "Project Plan",
+        "description": "Define project scope, allocate resources, and set milestones.",
+        "tag": "work"
+    },
+    {
+        "title": "Birthday Party Planning",
+        "description": "Venue booking, guest list, decorations, and cake order.",
+        "tag": "events"
+    },
+    {
+        "title": "Movie List",
+        "description": "Action: The Dark Knight. Comedy: The Hangover. Drama: The Shawshank Redemption.",
+        "tag": "entertainment"
+    },
+    {
+        "title": "Study Notes",
+        "description": "Physics: Newton's laws of motion, chemistry: chemical reactions.",
+        "tag": "education"
+    },
+    {
+        "title": "Financial Budget",
+        "description": "Income, expenses, savings goals, and investment plans.",
+        "tag": "finance"
+    },
+    {
+        "title": "Gardening Checklist",
+        "description": "Planting schedule, watering routine, and pest control measures.",
+        "tag": "gardening"
+    },
+    {
+        "title": "Job Interview Preparation",
+        "description": "Research company, practice common interview questions, and dress code.",
+        "tag": "career"
+    },
+    {
+        "title": "Home Renovation Ideas",
+        "description": "Kitchen remodeling, bathroom upgrades, and landscaping.",
+        "tag": "home"
+    },
+    {
+        "title": "Music Playlist",
+        "description": "Pop: Taylor Swift. Rock: Foo Fighters. Jazz: Miles Davis.",
+        "tag": "music"
+    },
+    {
+        "title": "Language Learning Goals",
+        "description": "Spanish: Basic conversation. French: Vocabulary expansion.",
+        "tag": "languages"
+    },
+    {
+        "title": "Art Project",
+        "description": "Painting: Landscape scenery. Sculpture: Clay modeling.",
+        "tag": "art"
+    },
+    {
+        "title": "Pet Care Routine",
+        "description": "Feeding schedule, grooming, and veterinary appointments.",
+        "tag": "pets"
+    },
+    {
+        "title": "Volunteering Opportunities",
+        "description": "Local community events, charity organizations, and fundraising campaigns.",
+        "tag": "volunteering"
+    },
+    {
+        "title": "Self-Care Plan",
+        "description": "Meditation, exercise, journaling, and relaxation techniques.",
+        "tag": "self-care"
+    },
+    {
+        "title": "Vacation Planning",
+        "description": "Destination: Hawaii. Activities: Snorkeling, hiking, and luaus.",
+        "tag": "travel"
+    },
+    {
+        "title": "Tech Gadgets Wishlist",
+        "description": "Smartphone, laptop, smartwatch, and wireless earbuds.",
+        "tag": "technology"
+    },
+    {
+        "title": "Healthy Recipes",
+        "description": "Salad with grilled chicken, quinoa stir-fry, and smoothie bowls.",
+        "tag": "health"
+    },
+    {
+        "title": "Home Cleaning Checklist",
+        "description": "Dusting, vacuuming, mopping, and laundry.",
+        "tag": "home"
+    },
+    {
+        "title": "Study Schedule",
+        "description": "Morning: Math. Afternoon: History. Evening: English literature.",
+        "tag": "education"
+    },
+    {
+        "title": "Financial Goals",
+        "description": "Save for a vacation, emergency fund, and retirement.",
+        "tag": "finance"
+    },
+    {
+        "title": "Fashion Inspiration",
+        "description": "Street style, formal wear, and casual outfits.",
+        "tag": "fashion"
+    },
+    {
+        "title": "Home DIY Projects",
+        "description": "Painting walls, building furniture, and decorating.",
+        "tag": "home"
+    },
+    {
+        "title": "Productivity Tips",
+        "description": "Time blocking, prioritizing tasks, and avoiding multitasking.",
+        "tag": "productivity"
+    },
+    {
+        "title": "Art Supplies Shopping List",
+        "description": "Canvas, brushes, acrylic paints, and sketchbooks.",
+        "tag": "art"
+    },
+    {
+        "title": "Baking Recipes",
+        "description": "Chocolate chip cookies, banana bread, and blueberry muffins.",
+        "tag": "cooking"
+    },
+    {
+        "title": "Learning Resources",
+        "description": "Online courses, books, and tutorials.",
+        "tag": "education"
+    },
+    {
+        "title": "Music Festival Wishlist",
+        "description": "Coachella, Glastonbury, and Tomorrowland.",
+        "tag": "music"
+    },
+    {
+        "title": "Healthy Habits Tracker",
+        "description": "Daily water intake, exercise, and sleep schedule.",
+        "tag": "health"
+    },
+    {
+        "title": "Movie Marathon List",
+        "description": "Harry Potter series, Marvel Cinematic Universe, and Star Wars saga.",
+        "tag": "entertainment"
+    },
+    {
+        "title": "Language Exchange Partners",
+        "description": "Spanish-speaking pen pal, French conversation partner.",
+        "tag": "languages"
+    },
+    {
+        "title": "Photography Ideas",
+        "description": "Sunset portraits, urban landscapes, and macro photography.",
+        "tag": "photography"
+    },
+    {
+        "title": "DIY Gifts",
+        "description": "Handmade candles, photo albums, and knitted scarves.",
+        "tag": "gifts"
+    },
+    {
+        "title": "Career Development Goals",
+        "description": "Skill development, networking, and professional certifications.",
+        "tag": "career"
+    },
+    {
+        "title": "Mindfulness Practices",
+        "description": "Breathing exercises, body scan meditation, and gratitude journaling.",
+        "tag": "self-care"
+    }
+]

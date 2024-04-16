@@ -11,3 +11,10 @@ export const formatTime = (str) =>{
         return "Unknown"
     }
 }
+
+export const sortByDate = (notes) => {
+    return notes.slice().sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
+  };
+  

@@ -2,7 +2,7 @@ const host = process.env.REACT_APP_BACKEND_HOST;
 
 export const fetchNotes = async (page, limit) => {
   const response = await fetch(
-    `${host}/api/v1/notes/get?page=${page}&?limit=${limit}`,
+    `${host}/api/v1/notes/get?page=${page}&limit=${limit}`,
     {
       method: "GET",
       headers: {
@@ -13,7 +13,7 @@ export const fetchNotes = async (page, limit) => {
   );
 
   //add a delay for the loading animation
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   if (!response.ok) {
     throw new Error(`Error ${response.status}: ${response.statusText}`);
@@ -28,6 +28,7 @@ export const fetchNotes = async (page, limit) => {
 export const addNote = async (title, description, tag) => {
   try {
     let success = false;
+    let data;
     const response = await fetch(
       `${host}/api/v1/notes/add`,
       {
@@ -41,8 +42,9 @@ export const addNote = async (title, description, tag) => {
     );
     if (response.status === 201) {
       success = true;
+      data = await response.json()
     }
-    return success;
+    return {success, data};
   } catch (error) {
     throw error;
   }
