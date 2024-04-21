@@ -53,6 +53,7 @@ export const addNote = async (title, description, tag) => {
 export const editNote = async (id, title, description, tag) => {
   try {
     let success = false;
+    let data;
     const response = await fetch(
       `${host}/api/v1/notes/update/${id}`,
       {
@@ -66,8 +67,9 @@ export const editNote = async (id, title, description, tag) => {
     );
     if (response.status === 200) {
       success = true;
+      data = await response.json()
     }
-    return success;
+    return {success, data};
   } catch (error) {
     throw error;
   }

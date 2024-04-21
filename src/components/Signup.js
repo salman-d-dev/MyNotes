@@ -9,6 +9,7 @@ import { sendOTP, signUp, verifyOTP } from '../api/auth';
 import { throttle } from '../utils/throttle';
 
 const Signup = (props) => {
+
   const [credentials, setCredentials] = useState({
     name: '',
     email: '',
@@ -19,15 +20,15 @@ const Signup = (props) => {
 
   const navigateTo = useNavigate();
   const [signUpClicked, setSignUpClicked] = useState(false);
-  const passwordsMatch = credentials.password === credentials.cpassword;
   const [OTPsent, setOTPsent] = useState(false);
   const [resendButtonDisabled, setResendButtonDisabled] = useState(false);
   const [countdown, setCountDown] = useState(120);
+  const passwordsMatch = credentials.password === credentials.cpassword;
 
   //add delay of 5s for each request
-  const throttledSendOTP = throttle(sendOTP, 5000);
-  const throttledSignUp = throttle(signUp, 5000);
-  const throttledVerifyOTP = throttle(verifyOTP, 5000);
+  const throttledSendOTP = throttle(sendOTP, 2000);
+  const throttledSignUp = throttle(signUp, 2000);
+  const throttledVerifyOTP = throttle(verifyOTP, 2000);
   const handleSignUp = async (e) => {
     e.preventDefault();
     

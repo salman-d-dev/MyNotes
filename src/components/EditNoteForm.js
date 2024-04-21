@@ -11,7 +11,7 @@ const EditNoteForm = (props) => {
   const handleSaveEditNote = async (e) => {
     e.preventDefault();
     //backend edit
-    const success = await editNote(
+    const {success , data} = await editNote(
       selectedNote._id,
       selectedNote.title,
       selectedNote.description,

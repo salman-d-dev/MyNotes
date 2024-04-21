@@ -53,7 +53,7 @@ const Notes = (props) => {
     },
     [loading, hasMore]
   );
-
+  console.log("Notes======== ",notes)
   // If server issue, show error
   if (error?.message) {
     return <Error error={error} />;
@@ -72,12 +72,17 @@ const Notes = (props) => {
   const sortedNotes = sortByDate(notes);
 
   return (
-    <div>
+    <div className="notesPage">
       <button className="addNoteButton" id="addNote" onClick={toggleAddForm}>
-        {showAddForm ? "Close Form" : "Add Note"}
+        {showAddForm ? "Close" : "+ Note"}
       </button>
-      {showAddForm && <AddNotesForm {...props} />}
-      {editMode && <EditNoteForm {...props} />}
+      <div className={`${showAddForm? "addFormShow" : "addFormHide"}`}>
+        <AddNotesForm {...props} />
+      </div>
+      {editMode && 
+      
+        <EditNoteForm  {...props}/>
+      }
       <h1 className="mainHead">Your Notes</h1>
       {searchTriggered && !buttonLoading && (
         <h1 className="mainHead">

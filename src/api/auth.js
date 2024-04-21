@@ -52,21 +52,29 @@ export const signUp = async (name, email, password) => {
     }
   };
 
-export const signIn = async (email, password) => {
-    if(!email || !password) return;
+export const signIn = async (formData) => {
+  let success = false
+    let data;
+    await new Promise(resolve=> {
+      setTimeout(resolve, 5000);
+    })
+    if(!formData.email || !formData.password) return;
     try {
       const response = await fetch(`${host}/api/v1/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email:formData.email, password:formData.password }),
       });
-      const json = await response.json();
-      return json;
+      if(response.status === 200){
+        data = await response.json();
+        success = true
+      }
+      return {success, data};
     } catch (error) {
       console.error(error);
-      return { success: false, error: 'An error occurred while signing in' };
+      throw new error("Login failed. Please try again later.");
     }
   };
 
