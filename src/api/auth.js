@@ -55,9 +55,9 @@ export const signUp = async (name, email, password) => {
 export const signIn = async (formData) => {
   let success = false
     let data;
-    await new Promise(resolve=> {
-      setTimeout(resolve, 5000);
-    })
+    // await new Promise(resolve=> {
+    //   setTimeout(resolve, 5000);
+    // })
     if(!formData.email || !formData.password) return;
     try {
       const response = await fetch(`${host}/api/v1/auth/signin`, {

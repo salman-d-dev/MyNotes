@@ -79,10 +79,10 @@ const Notes = (props) => {
       <div className={`${showAddForm? "addFormShow" : "addFormHide"}`}>
         <AddNotesForm {...props} />
       </div>
-      {editMode && 
+      <div className={`${editMode? "addFormShow" : "addFormHide"}`}>
+        <EditNoteForm {...props} />
+      </div>
       
-        <EditNoteForm  {...props}/>
-      }
       <h1 className="mainHead">Your Notes</h1>
       {searchTriggered && !buttonLoading && (
         <h1 className="mainHead">
