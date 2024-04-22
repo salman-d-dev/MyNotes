@@ -559,7 +559,7 @@ div #logo img {
   left: 50%;
   transform: translate(-90%, 135%);
   width: 100%;
-  transition: transform 300ms linear(0 0%, 0.52 21.08%, 1 100%);
+  transition: transform 300ms ease-in;
 
 }
 /*                                                Responsive CSS */
